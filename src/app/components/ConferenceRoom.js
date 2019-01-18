@@ -34,12 +34,6 @@ let strings = new LocalizedStrings({
   }
 });
 
-@connect((state) => {
-  return {
-    conferenceStore: state.voxeet.conference,
-    participantsStore: state.voxeet.participants
-  }
-})
 class ConferenceRoom extends Component {
 
   constructor(props) {
@@ -281,4 +275,9 @@ ConferenceRoom.defaultProps = {
   attendeesWaiting: AttendeesWaiting
 }
 
-export default ConferenceRoom
+export default connect((state) => {
+    return {
+      conferenceStore: state.voxeet.conference,
+      participantsStore: state.voxeet.participants
+    }
+})(ConferenceRoom)
